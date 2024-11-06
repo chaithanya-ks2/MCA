@@ -1,0 +1,25 @@
+a SET OF CHOICES USER MAKE TO COSTOMIZE THE APPLICATION BY HIS LIKES.
+
+SHARED PREFERENCES
+
+ITS A LIGHT WEIGHT MECHANISM TO STORE A NON SET OF VALUES.LWM MEANS IT HANDLES A SMALL AMOUNT OF DATA.FAVOURITE *RS
+STORE IN USER PREFERENCES ,START FROM DIFFERENT LEVELS.
+
+TEAM SETTING- WE CAN STORE THESE.
+CREATE OR MODIFY SHARED PREFERENCE = GET SHARED PREFERENCES,TAKES 2 PARAMETERS KEY & MODE
+Shared Preferences.Editor - used to write & edit
+use COMMIT /APPLY - LATER USE.
+SHARED PREFERENCES.OnSharedPreferencesChangeListener- change or added or remove
+write data - editor class.
+
+
+
+
+r2_score - it is a regression store function to evaluate the performance of lenier regression model.it is the qouificient determinanat ,it is the amount of variable in the output dependant attribute,which is predictable from the input independant variable S r^2=1-SSRES/SSTOTAL res is the sum of the residual errors .other is the total sum of the error,best possible score of r^2=1
+it can be negetive,coifficient calculation
+
+actual y
+predicted x
+error e=y-f
+error e2
+e2^2
