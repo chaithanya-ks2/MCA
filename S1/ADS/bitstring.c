@@ -1,185 +1,126 @@
-#include <stdio.h>
+#include<stdio.h>
+#include<stdlib.h>
 
-int n, n1, n2;
-void clearset(int arr[], int n)
-{
-    for (int i = 0; i < n; i++)
-        arr[i] = 0;
-}
-
-int ispresent(int arr[], int size, int ele)
-{
-    int flag = 0;
-    for (int i = 0; i < size; i++)
-    {
-
-        if (arr[i] == ele)
-        {
-            flag = 1;
-            return 1;
-        }
-    }
-    if (flag == 0)
-        return 0;
-}
-
-void display(int set[], int size)
-{
-    printf("set:{");
-    for (int i = 0; i < size; i++)
-    {
-        printf("%d", set[i]);
-        if (i != size - 1)
-            printf(",");
-    }
-    printf("}\n");
-}
-
-void makeSet(int uniset[], int set[], int n, int bitstr[])
-{
-    clearset(bitstr, n);
-
-    for (int i = 0; i < n; i++)
-    {
-        if (ispresent(set, n, uniset[i]) == 1)
-        {
-            bitstr[i] = 1;
-        }
-        else
-        {
-            bitstr[i] = 0;
-        }
-    }
-}
-
-void Union(int set1[], int set2[], int n)
-{
-    int uni[n];
-    for (int i = 0; i < n; i++)
-    {
-        if (set1[i] == 0 && set2[i] == 0)
-        {
-            uni[i] = 0;
-        }
-        else
-        {
-            uni[i] = 1;
-        }
-    }
-    display(uni, n);
-}
-
-void Intersec(int set1[], int set2[], int n, int inter[n])
-{
-    for (int i = 0; i < n; i++)
-    {
-        if (set1[i] == 1 && set2[i] == 1)
-        {
-            inter[i] = 1;
-        }
-        else
-        {
-            inter[i] = 0;
-        }
-    }
-}
-
-void Diff(int set1[], int n, int inter[])
-{
-    int diff[n];
-    for (int i = 0; i < n; i++)
-    {
-        if (set1[i] == inter[i])
-        {
-            diff[i] = 0;
-        }
-        else
-        {
-            diff[i] = 1;
-        }
-    }
-    display(diff, n);
-}
-
-void createset(int universal[], int set[], int element, int n1)
-{
-    clearset(set, n1);
-    if (n1 > n || n1 < 0)
-        printf("size of set1 in greater than universal set! or invalid size \n");
-    else
-    {
-        for (int i = 0; i < n1; i++)
-        {
-            printf("Enter your %dth element : ", i + 1);
-            scanf("%d", &element);
-
-            if (ispresent(set, n1, element) == 0 && ispresent(universal, n, element) == 1)
-                set[i] = element;
-            else
-            {
-                printf("Sorry, Cant allow Duplicated values!\n");
-                i--;
-            }
-        }
-    }
-}
+void bitsring(int []);
 
 int main()
 {
-    int element;
-    printf("Enter No of elements in Universal Set : ");
+    int i, j, n, temp, exist;
+    printf("Enter the number of elements: ");
     scanf("%d", &n);
-    int universal[n], bitstr1[n], bitstr2[n];
-    clearset(universal, n);
-    for (int i = 0; i < n; i++)
-    {
-        printf("Enter your %dth element : ", i + 1);
-        scanf("%d", &element);
+    int universal[n];
 
-        if (ispresent(universal, n, element) == 0)
-            universal[i] = element;
-        else
-        {
-            printf("Sorry, Cant allow Duplicated values!\n");
-            i--;
+    printf("Enter the elements in the universal set: ");
+    for (i=0; i<n; i++){
+        scanf("%d", &temp);
+        exist = 0;
+        for (j=0; j<=i; j++){
+            if (universal[j] == temp){
+                exist = 1;
+                break;
+            }
+        if (!exist){
+            universal[i] = temp;
+        }
+        }
+    }
+    printf("{");
+    for (i=0; i<n; i++){
+        printf("%d\t", universal[i]);
+    }
+    printf("\b}");
+    
+    // Sub
+    int m1, m2, bit1[n], bit2[n];
+
+    //sub1
+    printf("\nEnter the number of elements in first sub array: ");
+    scanf("%d", &m1);
+    int sub1[m1];
+
+    printf("\nEnter the elements of the first sub array: ");
+    for (i=0; i<m1; i++){
+        scanf("%d", &sub1[i]);
+    }
+
+    for (i=0; i<n; i++){
+        exist = 0;
+        for (j=0; j<m1; j++){
+            if (universal[i] == sub1[j]){
+                exist = 1;
+                break;
+            }
+        }
+        if (exist){
+            bit1[i] = 1;
+        }
+        else{
+            bit1[i] = 0;
         }
     }
 
-    printf("Enter No of elements in your Set 1 : ");
-    scanf("%d", &n1);
-    int Set1[n];
-    clearset(Set1, n);
-    createset(universal, Set1, element, n1);
+    for (i=0; i<n; i++){
+        printf("%d\t", bit1[i]);
+    }
 
-    printf("Enter No of elements in your Set 2 : ");
-    scanf("%d", &n2);
-    int Set2[n];
-    clearset(Set2, n);
-    createset(universal, Set2, element, n2);
 
-    printf("Universal ");
-    display(universal, n);
-    printf("\n1st ");
-    display(Set1, n1);
-    printf("2nd ");
-    display(Set2, n2);
+    //sub2
+    printf("\nEnter the number of elements in second sub array: ");
+    scanf("%d", &m2);
+    int sub2[m2];
 
-    printf("\nBistring of 1st ");
-    makeSet(universal, Set1, n, bitstr1);
-    display(bitstr1, n);
+    printf("\nEnter the elements of the second sub array: ");
+    for (i=0; i<m2; i++){
+        scanf("%d", &sub2[i]);
+    }
 
-    printf("Bitstring of 2nd ");
-    makeSet(universal, Set2, n, bitstr2);
-    display(bitstr2, n);
+    for (i=0; i<n; i++){
+        exist = 0;
+        for (j=0; j<m2; j++){
+            if (universal[i] == sub2[j]){
+                exist = 1;
+                break;
+            }
+        }
+        if (exist){
+            bit2[i] = 1;
+        }
+        else{
+            bit2[i] = 0;
+        }
+    }
 
-    int inter[n];
-    printf("\nUNION ");
-    Union(bitstr1, bitstr2, n);
-    Intersec(bitstr1, bitstr2, n, inter);
-    printf("INTERSECTION ");
-    display(inter, n);
-    printf("\nSet1 on Set2 DIFFERENCE ");
-    Diff(bitstr1, n, inter);
-    printf("Set2 on Set1 DIFFERENCE ");
-    Diff(bitstr2, n, inter);
+    for (i=0; i<n; i++){
+        printf("%d\t", bit2[i]);
+    }
+    
+    int setUnion[n];
+	for (int i = 0; i < n; i++) {
+		if (bit1[i] == 1 || bit2[i] == 1)
+			setUnion[i] = 1;
+		else
+			setUnion[i] = 0;
+	}
+
+	int setIntersection[n];
+	for (int i = 0; i < n; i++) {
+		if (bit1[i] == 1 && bit2[i] == 1)
+			setIntersection[i] = 1;
+		else
+			setIntersection[i] = 0;
+	}
+
+    printf("\nUnion set :\n");
+    for(int i=0;i<n;i++)
+    {
+        printf("%d\t",setUnion[i]);
+    }
+    printf("\nIntersection set :\n");
+    for(int i=0;i<n;i++)
+    {
+        printf("%d\t",setIntersection[i]);
+    }
+    
+
+    return 0;
 }
