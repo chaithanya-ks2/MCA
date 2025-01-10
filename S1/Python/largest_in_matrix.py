@@ -2,7 +2,7 @@ class Location:
     def __init__(self, no_of_rows, no_of_columns):
         self.m = no_of_rows
         self.n = no_of_columns
-        self.matrix = self.read_values()
+        self.matrix = Location.read_values(self)
 
     def read_values(self):
         matrix = []
