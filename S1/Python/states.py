@@ -2,17 +2,8 @@ states = input("Enter the states: ").split()
 state_dict = {state: len(state) for state in states}
 
 # sort dictionary by value
-def sort_dict(dict):
-    values = list(state_dict.values())
-    values.sort()
-
-    state_dict_sorted = {}
-
-    for val in values:
-        for state, length in state_dict.items():
-            if val == length:
-                state_dict_sorted[state] = length
-    
+def sort_dict(dicts):
+    state_dict_sorted = dict(sorted(dicts.items(), key=lambda items: items[1]))
     return state_dict_sorted
 
 # writing into csv file
