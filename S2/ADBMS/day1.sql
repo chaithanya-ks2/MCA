@@ -71,5 +71,8 @@ CREATE TABLE locations(
     country_id INT,
     FOREIGN KEY (country_id) REFERENCES countries(country_id));
 
+ALTER TABLE employees 
+ADD CONSTRAINT FOREIGN KEY (manager_id) REFERENCES employees(employee_id);
+
     
     
