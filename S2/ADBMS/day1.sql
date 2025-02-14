@@ -74,5 +74,26 @@ CREATE TABLE locations(
 ALTER TABLE employees 
 ADD CONSTRAINT FOREIGN KEY (manager_id) REFERENCES employees(employee_id);
 
+ALTER TABLE employees RENAME TO employee;
+ALTER TABLE employee ADD COLUMN bonus FLOAT;
+DESC employee;
+
+ALTER TABLE employee RENAME COLUMN department_id TO dept_id;
+ALTER TABLE employee MODIFY phone VARCHAR(10);
+ALTER TABLE employee DROP bonus;
+
+/* Primary key set as foreign key in another table cannot be deleted */
+ALTER TABLE employee DROP employee_id;
+
+DESC jobs;
+SELECT * FROM jobs;
+ALTER TABLE jobs MODIFY min_salary FLOAT;
+ALTER TABLE jobs MODIFY max_salary FLOAT;
+INSERT INTO jobs (job_id, job_title) VALUES
+	(1, "Manager"),
+    (2, "Accountant"),
+    (3, "Clerk"),
+    (4, "Peon");
     
+SELECT * FROM jobs WHERE job_id=1;
     
