@@ -1,0 +1,32 @@
+### **Short Notes on Basic Linux Commands**  
+
+1. `ls` – Lists files and directories in the current location.  
+2. `pwd` – Displays the present working directory.  
+3. `cd` – Changes the current directory.  
+4. `mkdir` – Creates a new directory.  
+5. `rmdir` – Removes an empty directory.  
+6. `rm` – Deletes files or directories.  
+7. `cp` – Copies files or directories.  
+8. `mv` – Moves or renames files or directories.  
+9. `touch` – Creates an empty file.  
+10. `cat` – Displays the content of a file.  
+11. `nano` / `vim` – Opens a file in text editors.  
+12. `grep` – Searches for a pattern in a file.  
+13. `find` – Searches for files and directories.  
+14. `chmod` – Changes file permissions.  
+15. `chown` – Changes file ownership.  
+16. `df` – Displays disk space usage.  
+17. `du` – Shows disk usage of files and directories.  
+18. `ps` – Displays active processes.  
+19. `kill` – Terminates a process by PID.  
+20. `top` – Shows real-time system resource usage.  
+21. `tar` – Archives files (`tar -cvf` for creating, `tar -xvf` for extracting).  
+22. `zip/unzip` – Compresses or extracts ZIP files.  
+23. `wget` – Downloads files from the internet.  
+24. `scp` – Securely copies files between systems.  
+25. `ssh` – Connects to a remote system securely.  
+26. `history` – Shows command history.  
+27. `man` – Displays the manual for a command.  
+28. `echo` – Prints text to the terminal.  
+29. `uname -a` – Shows system information.  
+30. `whoami` – Displays the currently logged-in user.  
