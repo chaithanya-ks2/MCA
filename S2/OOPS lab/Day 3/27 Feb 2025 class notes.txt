@@ -1,0 +1,115 @@
+27 Feb 2025 class notes
+________________________
+
+write a java program to sort an array
+
+create a class Test, with two int variables a and b, declare a parameterized constructor with two variables x and y of integer type.
+Assign x to a and y to b. Close the constructor then you have a method called equals and the return type of method equals is Boolean.
+And it takes a parameter and the parameter name is ob of type your class type. 
+
+
+equals()---------->
+if (ob.a == a) && (ob.b == b) {
+	return True;
+} else {
+	return False
+}
+
+close the equals method
+
+main()---------->
+
+
+create an object o1, and pass two values 10 and 20.
+create another object o2 with same values 10 and 20, 
+o3 with values 1 and 5;
+
+SOP ("o1==o2" + o1.equals(o2)); 
+SOP ("o1==o3" + o1.equals(o3));
+
+
+
+class Parent {
+	______________
+	______________
+}
+
+class Child extends Parent {
+	public void main(String args[]) {
+		Child c = new Child();
+	}
+}
+
+
+
+
+in inheritance create child class object
+you can use child class object to invoke parent class variables and methods
+no need to explicitly create parent object
+
+
+Create a class Parent. 
+SOP("This is Parent class"); within parent's constructor
+close the class parent
+now derive the child from parent class
+
+
+
+Create a class called Animal
+Declare a variable colour of type String
+Initialize the colour variable with any color
+Create a subclass Animal2 from Animal
+declare the variable colour with different colour name
+Declare a method called colourDisplay of type void
+SOP(display the colour value)
+close the function
+PSVM() {
+	create an object for the child class
+}
+
+
+**super as a reference variable-used to refer the immediate parent class object.**
+Whenever the instance of a subclass is created, an instance of parent class is created implicitly, which is referred by super keyword.
+
+colourDisplay() {
+	SOP ("Colour of parent class" + super.colour);
+}
+
+
+l and b of integer type
+create a parameterized constructor with parameters x and y of int type
+assign x and y to l and b
+a method called area in that 
+SOP(find area l*b)
+close the parent class
+create a child from your parent class; declare a  variable h of int type
+Now declare a parameterized constructor that takes a single argument z of type int
+assign z to h;
+print h;
+
+PSVM() {
+	create an object of child class
+	you can pass any 3 values. 
+	call the area method
+}
+
+
+inside your child class constructor give 
+super(m, n)
+first arguments should be arguments of your super class
+
+include a method volume in derived class void type
+find the volume l*b*h
+print it, and call the volume method.
+
+
+
+subclass constructor uses super keywords (methods) to invoke the super class constructor. 
+super may only be used within a subclass constructor.
+The call to superclass constructor using super method must appear as the first statement in the subclass constructor.
+The parameters in the super call must match the order and type of the instance variables declared in the super class. 
+
+
+write a java program to demonstrate multilevel inheritance
+
+ 
