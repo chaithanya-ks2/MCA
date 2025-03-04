@@ -69,3 +69,72 @@ JOIN sales ON customer.custid = sales.custid  -- Joining 'customer' with 'sales'
 JOIN product ON sales.pid = product.pid       -- Joining 'sales' with 'product' on product ID
 GROUP BY sales.product                        -- Grouping by product name
 HAVING sales_count >= 2;                      -- Display only products sold to 2 or more customers
+
+
+
+-- Selects course names and grades for students named "Smith"
+SELECT course_name, grade
+FROM grade_report AS g
+JOIN section AS s 
+ON g.Section_identifier = s.Section_identifier
+JOIN course AS c 
+ON s.Course_number = c.Course_number
+WHERE g.Student_number = (
+    -- Subquery to find the student number for "Smith"
+    SELECT Student_number FROM student WHERE name = "Smith"
+);
+
+-- Selects names and grades of students enrolled in "database" course during Fall semester in year 08
+SELECT name, grade
+FROM student AS s
+JOIN grade_report AS g
+ON s.Student_number = g.Student_number
+JOIN section AS se 
+ON se.Section_identifier = g.Section_identifier
+WHERE se.Semester = "Fall" 
+AND se.Course_number = (
+    -- Subquery to get the Course_number for the "database" course
+    SELECT Course_number FROM course 
+    WHERE Course_name = "database"
+) 
+AND se.year = 08;
+
+-- Selects prerequisite course numbers for the "Database" course
+SELECT prerequisite_number FROM prerequisite 
+WHERE Course_number = (
+    -- Subquery to get the Course_number for the "Database" course
+    SELECT Course_number FROM course 
+    WHERE Course_name = "Database"
+);
+
+-- Creates a view of students whose major is "CS"
+CREATE VIEW cs_students AS
+SELECT name FROM student
+WHERE major = "CS";
+
+-- Selects names from the "cs_students" view (students majoring in CS)
+SELECT name FROM cs_students;
+
+-- Selects distinct course names that were taught by instructor "King" during years 07 and 08
+SELECT DISTINCT course_name 
+FROM course 
+WHERE course_number IN (
+    -- Subquery to get course numbers taught by "King" in years 07 or 08
+    SELECT course_number 
+    FROM section
+    WHERE instructor = "King" 
+    AND year IN (07, 08)
+);
+
+-- Selects course details and student count for courses taught by instructor "King"
+SELECT s.course_number, s.semester, s.year, count(g.Section_identifier) AS student_count
+FROM section AS s
+JOIN grade_report as g
+ON s.section_identifier = g.section_identifier
+WHERE s.Instructor = "King"
+GROUP BY g.Section_identifier;
+
+-- Selects names of students who are in class 2 and majoring in "CS"
+SELECT name FROM student
+WHERE class = 2 AND major = "CS";
+
