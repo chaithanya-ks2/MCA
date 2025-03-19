@@ -1,0 +1,64 @@
+String class
+_____________
+
+String is the sequence of characters
+In java String is an object that represents the sequence of characters
+
+>> char ch[5];  // c lang
+
+In java using string literal or using new key word
+String is a pre-defined class.
+
+>> String s = "Java";                // String literals
+>> String s = new String("Java");
+
+
+So this pre-defined String is available in java.lang package.
+
+
+built-in package examples: util, java, lang, io, awt, etc.
+Generally string is a sequence of characters, but in java, string is an object that represent the sequence of characters.
+___________________
+|		   |
+| java.lang.String |
+|__________________|
+
+How to create a strng object
+1) String literals - using double quotes
+   String s = "java";
+2) By new key-word
+   String s = new String("Java");
+
+Each time you create a string literal the jvm checks the string constant pool first.
+If the string already exists in the pool, reference to the pooled instance is returned
+If the string does not exist in the pool, a new string instance is created and placed in the pool.
+
+Using new keyword, jvm will create a new string object in normal heap memory, 
+and the literal abc is placed in the string constant pool
+the variable s will refer to the object in a heap.
+Pool is used to save memory (use of string literal)
+
+CharSequence interface
+________________________
+It's an interface available in java.lang package. It enables flexible and implementation independence text processing across the java platform. And the different classes are different string handling classes which are available in java.lang.
+1) String
+2) StringBuffer
+3) StringBuilder
+
+1) String
+____________
+String class encapsulates a series of characters once instantiated, a string object content is fixed, and cannot be modified (immutable).
+This immutability ensures that string objects are safe. 
+Example:
+>> String s = "Java";               
+>> String s = new String("Java");
+
+? 
+
+2) StringBuffer
+________________
+String class is immutable and string Buffer is immutable. It represents a mutable sequence of characters. 
+It is commonly used in multi threaded concepts
+It includes various string manipulation operations like insertion, deletion, appends, etc.
+
+>> StringBuffer st = new StringBuffer();
