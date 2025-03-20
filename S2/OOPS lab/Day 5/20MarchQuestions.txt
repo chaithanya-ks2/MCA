@@ -1,0 +1,22 @@
+1) define a class product with data members productCode, productName and price. create 3 objects of the product class and find the product having the lowest price.
+2) Write a menu driven program to perform matrix operations (addition, multiplication, transpose)
+3) Addition of two complex numbers. 
+4) check whether a matrix is symmetric or not. 
+5) Create an array and search for a particular item in the array.
+6) Perform string manipulation. (convert to lowercase, uppercase, find the length, find the substring, find the index of the first occurrence of the character in the given string).
+7) Java program with a class for an employee having attributes employeeNumber, employeeName, employeeSalary. Find the total salary of that employee. How to calculate the next salary of the employee. 
+8) Create a class for employees having attributes employeeNumber, employeeName, employeeSalary. Read N employee information/ data (use array of objects) and search for an employee using the employee number (use the concept of array of objects).
+
+
+syntax for creation of array of objects
+________________________________________
+
+className obj[] = new className[N];
+Employee  obj[] = new Employee[N];
+
+Create a class Person with two members name and age. name is of string type, age is of int type. parameterized constructor to receive values for name and age. using this pointer refer the current object. A display function: display name and age. Main function: // Creating an array of object for the class Person. 
+
+- Write a java program to sort string. (compareTo() method).
+- Program to calculate area of different shapes using overloaded functions.
+- class employee with members employeeID, name , salary address, create a constructor to initialize the data members. Create another class Teacher that inherit the properties of class Employee and contains its own data members departments, subjectsTaught, teacherName and constructors to initialize these data members. Include a display() method to display all the data members. Use array of objects to display details of N teachers. 
+- Create an interface having prototype of functions area and perimeter. Create two classes circle and rectangle which implements the above interface. Create a menu driven programs to find area and perimeter of objects. 
