@@ -1,64 +1,78 @@
-String class
-_____________
+What is a String?
+- A String is a sequence of characters.
+- In Java, a String is an object that represents a sequence of characters.
+- Unlike primitive data types, String is a predefined class in Java, available in the java.lang package.
 
-String is the sequence of characters
-In java String is an object that represents the sequence of characters
-
->> char ch[5];  // c lang
-
-In java using string literal or using new key word
-String is a pre-defined class.
-
->> String s = "Java";                // String literals
->> String s = new String("Java");
+Example in C:
+char ch[5]; // Character array in C
 
 
-So this pre-defined String is available in java.lang package.
+Example in Java:
 
+// Using String literal
+String s1 = "Java";
+// Using new keyword
+String s2 = new String("Java");
+How to Create a String Object
 
-built-in package examples: util, java, lang, io, awt, etc.
-Generally string is a sequence of characters, but in java, string is an object that represent the sequence of characters.
-___________________
-|		   |
-| java.lang.String |
-|__________________|
+1. **Using String Literals:**
+ - If the string exists in the String Constant Pool, a reference is returned.
+ - If it does not exist, a new instance is created and stored.
+ - Example:
+ String s1 = "Java"; // String literal
 
-How to create a strng object
-1) String literals - using double quotes
-   String s = "java";
-2) By new key-word
-   String s = new String("Java");
+2. **Using new Keyword:**
+ - Always creates a new string object in heap memory.
+ - Example:
+ String s2 = new String("Java"); // Creates a new object in heap memory
+String Constant Pool:
+- Used to save memory by storing only one instance of each unique string.
+- Strings are immutable, so reusing them avoids unnecessary memory consumption.
+CharSequence Interface:
+- The CharSequence interface is available in the java.lang package.
+- Provides a flexible way to handle different types of character sequences.
 
-Each time you create a string literal the jvm checks the string constant pool first.
-If the string already exists in the pool, reference to the pooled instance is returned
-If the string does not exist in the pool, a new string instance is created and placed in the pool.
+- Classes that implement CharSequence:
+ 1. String (Immutable)
+ 2. StringBuffer (Mutable & Thread-Safe)
+ 3. StringBuilder (Mutable & Non-Thread-Safe)
 
-Using new keyword, jvm will create a new string object in normal heap memory, 
-and the literal abc is placed in the string constant pool
-the variable s will refer to the object in a heap.
-Pool is used to save memory (use of string literal)
-
-CharSequence interface
-________________________
-It's an interface available in java.lang package. It enables flexible and implementation independence text processing across the java platform. And the different classes are different string handling classes which are available in java.lang.
-1) String
-2) StringBuffer
-3) StringBuilder
-
-1) String
-____________
-String class encapsulates a series of characters once instantiated, a string object content is fixed, and cannot be modified (immutable).
-This immutability ensures that string objects are safe. 
+String Class (Immutable):
+- Represents a sequence of characters.
+- Strings in Java are immutable (cannot be changed after creation).
+- Ensures security, caching, and synchronization benefits.
 Example:
->> String s = "Java";               
->> String s = new String("Java");
+String s1 = "Java";
+String s2 = s1.concat(" Programming");
+System.out.println(s1); // Output: Java (unchanged)
+System.out.println(s2); // Output: Java Programming (new object created)
+StringBuffer Class (Mutable & Thread-Safe):
+- Allows modification of strings without creating new objects.
+- It is mutable (can be modified after creation).
+- Thread-safe, meaning multiple threads can work on it simultaneously.
+- Used when a string is frequently modified (e.g., concatenation, insertion, deletion).
 
-? 
+Example:
+StringBuffer sb = new StringBuffer("Java");
+sb.append(" Programming");
+System.out.println(sb); // Output: Java Programming
+Important Methods in StringBuffer:
+- append(String str): Appends the specified string.
+- insert(int offset, String str): Inserts a string at a specified position.
+- delete(int start, int end): Removes characters from start to end index.
+- replace(int start, int end, String str): Replaces characters in a substring.
+- reverse(): Reverses the sequence of characters.
 
-2) StringBuffer
-________________
-String class is immutable and string Buffer is immutable. It represents a mutable sequence of characters. 
-It is commonly used in multi threaded concepts
-It includes various string manipulation operations like insertion, deletion, appends, etc.
+StringBuilder Class (Mutable & Non-Thread-Safe):
+- Similar to StringBuffer but faster as it is not thread-safe.
+- Recommended when working with strings in non-multithreaded applications.
+Example:
+StringBuilder sb = new StringBuilder("Java");
+sb.append(" Programming");
+System.out.println(sb); // Output: Java Programming
 
->> StringBuffer st = new StringBuffer();
+
+Conclusion:
+- Use String when immutability is needed.
+- Use StringBuffer for thread-safe mutable operations.
+- Use StringBuilder for better performance in non-threaded applications.
