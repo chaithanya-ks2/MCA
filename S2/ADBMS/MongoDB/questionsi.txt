@@ -1,0 +1,11 @@
+Create a database and collection. inside values in the collection
+
+1) Display name (both first and last name) and mark of all female students in MCA
+2) Display the details of student who secured highest mark in the course MCA
+3) Display all male students who has got A+ grade
+4) Top 5 students in mechanical department
+5) Display female students with marks more than 90
+6) Students with marks in between 80 and 90
+7) Display students with name, starting with 'A'
+8) Display students from 'Kollam'
+9) Display students neither from 'Malappuram' nor from 'Trivandrum'
