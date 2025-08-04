@@ -1,0 +1,23 @@
+https://medium.com/analytics-vidhya/yolo-explained-5b6f4564f31
+
+YOLO
+You Only Look Once
+-real-time object detection algorithm
+- combines classification and prediction of bounding boxes for detected ()objects using a single neural network
+(was multi-step process)
+-heavily optimized
+- much faster than running two separate neural networks
+- repurposing traditional image classifier
+
+
+
+https://d2l.ai/chapter_computer-vision/bounding-box.html
+
+Object Detection and Bounding Boxes
+___________________________________
+
+in image classification we assume that there is only one major object in the image, and we only focus on how to recognize its category.
+for multiple objects - category and sepcific position in the image
+we refer to such tasks as object detection (onject recognition)
+
+
