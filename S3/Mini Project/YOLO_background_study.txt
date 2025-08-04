@@ -18,6 +18,10 @@ ___________________________________
 
 in image classification we assume that there is only one major object in the image, and we only focus on how to recognize its category.
 for multiple objects - category and sepcific position in the image
-we refer to such tasks as object detection (onject recognition)
+we refer to such tasks as object detection (object recognition)
 
+
+PyTorch & D2L (Dive into Deep Learning)
+_______________________________________
+The combination of PyTorch (torch) and D2L (d2l) is often used for learning and implementing deep learning models
 
