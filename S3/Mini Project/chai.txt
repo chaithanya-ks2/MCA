@@ -1,0 +1,258 @@
+https://github.com/AashiDutt/SmartWasteSegregation/
+
+https://ijirt.org/publishedpaper/IJIRT172457_PAPER.pdf
+
+Waste Management using CCTV monitoring and data analytics
+__________________________________________________________
+
+- The system integrates YOLOv5 for
+object detection to identify both individuals and trash
+within a restricted area.
+- If a person is detected, a
+Convolutional Neural Network (CNN) is utilized for facial
+recognition to ascertain their identity
+- In cases where
+facial recognition fails, the system switches to vehicle
+number plate detection to identify the perpetrator.
+- Once the offender is
+identified through facial recognition or vehicle number
+plate detection, an automated fine system is triggered to
+discourage such activities. 
+
+
+YOLOv5, a state-of-the-art object detection algorithm
+_____________________________________________________
+
+Object detection is a fundamental problem in computer vision that involves identifying instances of objects in images or videos and determining their locations using bounding boxes.
+
+Traditional Object Detection Methods
+------------------------------------
+1. Feature-based Approaches
+Feature-based approaches involved manually designing filters or descriptors that could capture the key visual features of objects.
+
+-HOG (Histogram of Oriented Gradients)
+to describe the appearance and shape of objects by capturing the distribution of gradient orientations in localized portions of the image.
+
+-SIFT (Scale-Invariant Feature Transform)
+SIFT is a method for detecting and describing local features in images, which can then be matched across different views of an object.
+high computational cost
+
+These methods relied on sliding windows to search for objects across an image
+-high computational cost
+- slow performance
+- not suitable for real-time applications
+- occlusions and lighting changes
+
+Metrics used in object detection
+--------------------------------
+mean average precision (mAP)
+
+- IoU ---- evaluates the degree of overlap between ground truth (gt) and predictions (pd)
+
+- Precision and Recall
+Precision: What proportion of positive identifications were correct?
+Recall: the proportion of actual positives that were correctly identified
+
+Precision = TP/TP+FP
+Recall = TP/TP+FN
+
+Average Precision (AP)
+----------------------
+When plotting the precision recall curve evaluated at an IoU threshold, we get the Average Precision
+
+AP@alpha = integral 0 to 1 p(r)dr
+
+Mean Average Precision (mAP)
+----------------------------
+MAP = sigma q=1 to Q AP(q) / Q
+the average of the AP scores for all the classes. So if the model is detecting 3 classes — say, dogs, cats, and cars — it calculates an AP score for each one, and then averages them.
+
+Deep Learning and the Revolution in Object Detection
+____________________________________________________
+
+2. R-CNN Family: Region-based Convolutional Neural Networks
+-----------------------------------------------------------
+combining region proposals with CNN-based feature extraction
+- R-CNN (2014)
+- Fast R-CNN (2015)
+- Faster R-CNN (2016)
+
+Selective Search Algorithm
+--------------------------
+Selective Search is an algorithm that helps find potential objects in an image — without knowing what those objects are.
+It doesn't classify the objects — it just proposes regions (boxes) that are worth checking.
+
+
+1) Start with small regions
+- The image is broken into many small segments using a basic segmentation method (like color or texture similarity). ------ superpixels
+2) Merge similar regions
+3) Generate region proposals
+- Each time regions are merged, it records the bounding box that covers them.
+- After many merging steps, you get a list of proposed regions that might contain objects.
+4) Rank the proposals:
+Typically, around 2,000 proposals are selected per image.
+
+
+R-CNN 
+-----
+- selective search algorithm - 2000 possible object regions in an image
+- runs CNN separately on each region to extract features
+- classified using SVM
+
+Fast R-CNN
+----------
+- entire image is passed through the CNN only once to get a shared feature map.
+- Then, for each region proposal, it extracts a part of the feature map (instead of re-running the CNN)
+- Classification and bounding box prediction are done on this shared data
+
+Faster R-CNN (2016)
+-------------------
+- Introduced the Region Proposal Network (RPN) — a neural network that learns to generate region proposals from the feature map
+
+RPN
+---
+A Region Proposal Network (RPN) is a small neural network that learns to suggest where objects might be in an image.
+
+- input: feature map from a CNN
+- sliding window
+- At each location it:
+	- predict multiple anchor boxes
+	- for each anchor boxes:
+		- object score
+		- Bounding box adjustments
+- output: a list of region proposals
+
+
+Single stage detectors: YOLO and SSD
+_____________________________________
+R-CNN slow- because it relied on two-stage approach
+	- region proposal
+	- classification
+
+YOLO (You Only Look Once)
+_________________________
+YOLO (2016)
+-----------
+- divides the image into a grid
+- each grid cell predicts a set of bounding boxes along with class probabilities for objects within those boxes
+-early versions struggled with detecting small objects and had lower accuracy
+
+YOLOv2 and YOLOv3
+-----------------
+- introduced anchor boxes
+- better loss functions
+- multi-scale detection
+
+YOLOv4 and YOLOv5
+-----------------
+- further optimized
+
+4. SSD (Single shot MultiBox Detector)
+______________________________________
+unlike YOLO, SSD uses multiple feature maps from different layers of the network to perform detections at various scales.
+handles small objects
+
+SSD (2016)
+----------
+divides into grids, predicts bounding boxes and class probabilities for each grid cell
+- detects objects of varying sizes
+- more effective than YOLO
+- slightly less accurate than R-CNN
+
+Recent Advances in Object Detection
+___________________________________
+5. EffucuebtDet
+---------------
+Built upon EfficientNet Backbone
+which scales the network architecture in a balanced way, optimizing for both accuracy and speed
+EfficientDet (2020)
+-------------------
+introduces a BiFPN (bidirectional Featire Pyramid Network)
+6. RetinaNet
+------------
+RetinaNet (2017)
+----------------
+
+R-CNN Algorithm
+_______________
+
+The sliding windows algorithm conducts classification and regression for every window in the image, regardless of whether the window contains any relevant features.
+in the Region Convolutional Neural Network, selective search is applied to the image.
+Consequently, rather than processing all image subsections, attention is focused on these proposed regions and we can run our classification and regression algorithms on these subsections.
+
+The object detection algorithm begins by taking an input picture and generating approximately 2000 region proposals using the bottom-up selective search technique. This approach uses the pixel intensities of the image to perform segmentation, dividing the picture into different segments. These segments are added to the list of region proposals, and the process is repeated iteratively. During each repetition, larger segments are generated, making it a “bottom-up” process. This means that it starts with smaller segments and progressively creates larger ones until reaching the desired number of around 2000 region proposals. The result is a diverse set of potential object regions that the algorithm will further evaluate for object detection.
+
+
+Feature Extraction: The next step in the RCNN is the feature extraction which involves extracting fixed size features vector of 4096-dimension from each region proposal. These features are important in classifying the regions as one of our interest objects.
+
+Region Classification: In RCNN, the process of region classification involves using Support Vector Machines (SVMs) trained to detect each object of interest to classify the generated regions. For instance, if the objects of interest are cars and people in an image, each region is separately passed through the car detector SVM. If the region contains a car, the SVM returns a positive detection; otherwise, it returns a negative detection. Similarly, the region is passed through the Person Detector SVM to determine if it contains a person. Since the same object might be detected multiple times in different regions, a non-maximum suppression (NMS) technique is employed to discard duplicate detections. This ensures that each object is only detected once, improving the accuracy and efficiency of the object detection process. By using SVMs to classify regions and applying NMS to handle duplicate detections, the RCNN algorithm achieves robust and accurate object detection across various objects of interest within the input image.
+
+Fast R-CNN Algorithm
+____________________
+
+Fast R-CNN builds upon the original R-CNN approach by introducing notable improvements. Instead of employing selective search to make region proposals, Fast R-CNN extracts feature maps from the image using a single CNN. These feature maps are then utilized for region proposals by employing a technique known as Region of Interest (RoI) pooling. RoI pooling aligns the proposed regions to a fixed size, ensuring efficient processing and enhancing the overall object detection process.
+
+
+Region-based Fully Convolutional Network (R-FCN)
+________________________________________________
+
+The R-CNN family of object detectors can be divided into two sub-networks by the Region-of-Interest (ROI) pooling layer:
+
+-A shared, “fully convolutional” subnetwork independent of ROIs
+-An ROI-wise subnetwork that does not share computation.
+
+ROI pooling is followed by fully connected (FC) layers for classification and bounding box regression. The FC layers after ROI pooling do not share among different ROIs and take time. This makes R-CNN approaches slow, and the fully connected layers have a large number of parameters. In contrast to region-based object detection methods, Region-based Fully Convolutional Network (R-FCN) is fully convolutional with almost all computation shared on the entire image.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
